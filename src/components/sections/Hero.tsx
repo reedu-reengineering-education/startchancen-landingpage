@@ -40,7 +40,7 @@ export default function Hero({
               priority
             />
             {/* Left gray overlay fading to transparent for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-700/70 via-gray-700/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-700/70 via-gray-700/60 to-transparent" />
           </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-[#62A044]/80 to-[#00B4E4]/60" />
@@ -58,7 +58,7 @@ export default function Hero({
                 {bullets.map((b) => (
                   <li
                     key={b}
-                    className="flex items-center gap-1.5 text-white/80 text-sm"
+                    className="flex items-center gap-1.5 text-white text-sm"
                   >
                     <Check size={14} className="text-[#FFDD35] shrink-0" />
                     {b}
