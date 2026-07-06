@@ -60,7 +60,7 @@ const angeboteCards = [
     icon: Users,
     title: "Kooperationen",
     description:
-      "Projektmachen und individuelle Formate – gemeinsam gestalten wir digitale Bildung für Ihre Schule.",
+      "Projekte und individuelle Formate - gemeinsam gestalten wir digitale Bildung für Ihre Schule.",
     href: "/angebote",
   },
 ];
@@ -104,42 +104,49 @@ const faqItems = [
     question: "Was ist das Startchancen-Programm?",
     answer:
       "Das Startchancen-Programm ist ein gemeinsames Förderprogramm von Bund und Ländern zur Stärkung der Chancengerechtigkeit im Bildungssystem. Bis 2034 werden rund 20 Milliarden Euro in Schulen mit besonderen Herausforderungen investiert.",
+    link: "https://www.bmbfsfj.bund.de/bmbfsfj/themen/bildung/schule/startchancen-programm-274440",
   },
   {
     id: "q2",
     question: "Welche Schulen werden gefördert?",
     answer:
       "Die Auswahl der Startchancen-Schulen erfolgt durch die Bundesländer auf Basis wissenschaftlicher Kriterien. Schulen können sich in der Regel nicht selbst bewerben.",
+    link: "https://startchancen.com/startchancen-schulen-schulliste-bmbf/",
   },
   {
     id: "q3",
     question: "Was ist die senseBox?",
     answer:
       "Die senseBox ist ein offenes Lern- und Experimentiersystem für digitale Bildung, MINT-Unterricht, Umweltmessungen und Datenkompetenz.",
+    link: "https://sensebox.de/",
   },
   {
     id: "q4",
     question: "Welche Angebote gibt es für Startchancen-Schulen?",
     answer:
       "Wir unterstützen Schulen mit Unterrichtsmaterialien, Projektangeboten, Fortbildungen, Ausstattung und individueller Beratung.",
+    link: "https://startchancen-landingpage.vercel.app/angebote",
   },
   {
     id: "q5",
     question: "Für welche Schulformen eignet sich die senseBox?",
     answer:
       "Die senseBox kann von der Grundschule bis zur Berufsschule eingesetzt werden.",
+    link: "https://sensebox.de/de/products",
   },
   {
     id: "q6",
     question: "Gibt es Fortbildungen für Lehrkräfte?",
     answer:
       "Ja. Wir bieten verschiedene Workshops und Schulungen für Lehrkräfte und Kollegien an.",
+    link: "https://startchancen-landingpage.vercel.app/kontakt",
   },
   {
     id: "q7",
     question: "Wie kann ich mitmachen?",
     answer:
       "Wenn Ihre Schule Teil des Startchancen-Programms ist oder Sie sich über Einsatzmöglichkeiten informieren möchten, nehmen Sie gerne Kontakt mit uns auf.",
+    link: "https://startchancen-landingpage.vercel.app/kontakt",
   },
 ];
 
@@ -183,26 +190,29 @@ export default function Startseite() {
               <p className="text-gray-500 mb-3 text-sm">
                 Ziel des Programms ist es,
               </p>
-              <ul className="space-y-2 mb-8">
-                {[
-                  "mehr Chancengerechtigkeit zu schaffen",
-                  "Basiskompetenzen zu stärken",
-                  "Schüler:innen besser auf die Anforderungen einer digitalen Welt vorzubereiten",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 text-gray-600"
-                  >
-                    <Check
-                      size={16}
-                      className="text-[#62A044] mt-0.5 shrink-0"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <b>
+                <ul className="space-y-2 mb-8">
+                  {[
+                    "mehr Chancengerechtigkeit zu schaffen",
+                    "Basiskompetenzen zu stärken",
+                    "Schüler:innen besser auf die Anforderungen einer digitalen Welt vorzubereiten",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-gray-600"
+                    >
+                      <Check
+                        size={16}
+                        className="text-[#62A044] mt-0.5 shrink-0"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </b>
               <Link
-                href="/faq#was-ist-das-startchancen-programm"
+                href="https://www.bmbfsfj.bund.de/bmbfsfj/themen/bildung/schule/startchancen-programm-274440"
+                target="_blank"
                 className={cn(
                   buttonVariants({ variant: "default" }),
                   "bg-[#62A044] hover:bg-[#4e8335] text-white",
@@ -356,7 +366,7 @@ export default function Startseite() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-32 rounded-xl overflow-hidden border border-gray-100">
                   <Image
-                    src="/img/senseBox_einsatz.jpg"
+                    src="/img/iCODE_nature.jpg"
                     alt="Schüler:innen beim Programmieren"
                     fill
                     className="object-cover"
@@ -406,17 +416,18 @@ export default function Startseite() {
                 caption: "Projektwoche Nachhaltigkeit",
               },
             ].map(({ src, alt, caption }) => (
-              <div
-                key={caption}
-                className="overflow-hidden rounded-xl border border-gray-100 bg-white hover:shadow-md transition-shadow"
-              >
-                <div className="relative aspect-video">
-                  <Image src={src} alt={alt} fill className="object-cover" />
+              <Link key={caption} href="/praxisbeispiele">
+                <div className="overflow-hidden rounded-xl border border-gray-100 bg-white hover:shadow-md transition-shadow">
+                  <div className="relative aspect-video">
+                    <Image src={src} alt={alt} fill className="object-cover" />
+                  </div>
+                  <div className="p-4 border-t border-gray-100">
+                    <p className="font-medium text-sm text-gray-800">
+                      {caption}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4 border-t border-gray-100">
-                  <p className="font-medium text-sm text-gray-800">{caption}</p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -449,7 +460,7 @@ export default function Startseite() {
       </section>
 
       {/* ── 6. PASSEND FÜR DAS STARTCHANCEN-PROGRAMM ────────────────────── */}
-      <section className="bg-[#62A044]/5 border-y border-[#62A044]/10">
+      {/* <section className="bg-[#62A044]/5 border-y border-[#62A044]/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-[#62A044] mb-6">
             Passend für das Startchancen-Programm
@@ -482,7 +493,7 @@ export default function Startseite() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── 7. KONTAKT CTA ───────────────────────────────────────────────── */}
       <section className="bg-white">
@@ -522,6 +533,20 @@ export default function Startseite() {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
                   {faq.answer}
+                  {faq.link && (
+                    <>
+                      <br></br>
+                      <a
+                        href={faq.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#62A044] hover:underline"
+                      >
+                        Mehr erfahren
+                        <ChevronRight size={13} />
+                      </a>
+                    </>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}

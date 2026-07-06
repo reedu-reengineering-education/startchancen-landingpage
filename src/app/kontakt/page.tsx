@@ -14,6 +14,8 @@ export default function Kontakt() {
       <Hero
         title="Interesse an einer Zusammenarbeit?"
         subtitle="Wir beraten Sie gerne zu Ihren Fragen und Ideen. Schreiben Sie uns – wir melden uns zeitnah zurück."
+        imageSrc="/img/team_reedu.jpeg"
+        imageAlt="Das Team"
       />
 
       <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">

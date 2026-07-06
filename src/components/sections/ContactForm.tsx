@@ -58,10 +58,10 @@ export default function ContactForm() {
     () =>
       Boolean(
         form.name &&
-          form.institution &&
-          form.state &&
-          form.email &&
-          form.message,
+        form.institution &&
+        form.state &&
+        form.email &&
+        form.message,
       ),
     [form],
   );
@@ -88,11 +88,15 @@ export default function ContactForm() {
 
       if (!response.ok) {
         const payload = (await response.json()) as { error?: string };
-        throw new Error(payload.error ?? "Anfrage konnte nicht gesendet werden.");
+        throw new Error(
+          payload.error ?? "Anfrage konnte nicht gesendet werden.",
+        );
       }
 
       setStatus("success");
-      setStatusMessage("Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.");
+      setStatusMessage(
+        "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
+      );
       setForm(initialState);
     } catch (error) {
       const message =
@@ -151,7 +155,11 @@ export default function ContactForm() {
               setForm((prev) => ({ ...prev, state: value }));
             }}
           >
-            <SelectTrigger id="state" className="mt-2 w-full" aria-label="Bundesland">
+            <SelectTrigger
+              id="state"
+              className="mt-2 w-full"
+              aria-label="Bundesland"
+            >
               <SelectValue placeholder="Bitte auswählen" />
             </SelectTrigger>
             <SelectContent>

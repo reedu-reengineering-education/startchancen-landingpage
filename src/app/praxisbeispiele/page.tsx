@@ -17,7 +17,10 @@ const examples = [
     title: "Umweltmessungen auf dem Schulhof",
     body: "Schülerinnen und Schüler messen Temperatur, Feinstaub oder Luftfeuchtigkeit direkt vor Ort und werten die Daten aus. Die gesammelten Messwerte werden anschließend analysiert, visualisiert und mit anderen Schulen geteilt.",
     tags: ["Umweltbildung", "Datenkompetenz", "BNE"],
-    image: { src: "/img/schulhof.jpeg", alt: "Schüler messen Umweltdaten auf dem Schulhof" },
+    image: {
+      src: "/img/schulhof.jpeg",
+      alt: "Schüler messen Umweltdaten auf dem Schulhof",
+    },
     bg: "bg-white",
     imageRight: false,
   },
@@ -25,7 +28,10 @@ const examples = [
     title: "Coding und Making",
     body: "Eigene digitale Projekte entwickeln und erste Programmiererfahrungen sammeln. Von einfachen LED-Schaltungen bis zu vernetzten Sensorsystemen – praxisnah, spielerisch und mit echten Ergebnissen.",
     tags: ["Programmieren", "Computational Thinking", "MINT"],
-    image: { src: "/img/senseBox_edu_2.jpg", alt: "Coding und Making mit der senseBox" },
+    image: {
+      src: "/img/senseBox_edu_2.jpg",
+      alt: "Coding und Making mit der senseBox",
+    },
     bg: "bg-gray-50",
     imageRight: true,
   },
@@ -33,7 +39,10 @@ const examples = [
     title: "Nachhaltigkeit und BNE",
     body: "Projektwochen zu Klima, Umwelt und nachhaltiger Entwicklung gestalten. Zum Beispiel eine Smarte Lego Stadt mit Sensoren – Schüler:innen erleben, wie digitale Technologien und Nachhaltigkeit zusammenwirken.",
     tags: ["BNE", "Klimabildung", "Fächerübergreifend"],
-    image: { src: "/img/iCODE_MS_lego.jpg", alt: "Smarte Lego Stadt mit senseBox Sensoren" },
+    image: {
+      src: "/img/iCODE_MS_lego.jpg",
+      alt: "Smarte Lego Stadt mit senseBox Sensoren",
+    },
     bg: "bg-white",
     imageRight: false,
   },
@@ -64,7 +73,10 @@ export default function Praxisbeispiele() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
             {kompetenzen.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2.5 text-gray-700">
+              <div
+                key={label}
+                className="flex items-center gap-2.5 text-gray-700"
+              >
                 <Icon size={18} className="text-[#62A044]" />
                 <span className="text-sm font-medium">{label}</span>
               </div>
@@ -78,12 +90,13 @@ export default function Praxisbeispiele() {
         <section key={title} className={`${bg} border-b border-gray-100`}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-
               {/* Image */}
-              <div className={cn(
-                "relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md",
-                imageRight && "lg:order-2"
-              )}>
+              <div
+                className={cn(
+                  "relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md",
+                  imageRight && "lg:order-2",
+                )}
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -109,9 +122,10 @@ export default function Praxisbeispiele() {
                 <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                   {title}
                 </h2>
-                <p className="text-gray-600 leading-relaxed text-base">{body}</p>
+                <p className="text-gray-600 leading-relaxed text-base">
+                  {body}
+                </p>
               </div>
-
             </div>
           </div>
         </section>
@@ -150,4 +164,3 @@ export default function Praxisbeispiele() {
     </>
   );
 }
-
