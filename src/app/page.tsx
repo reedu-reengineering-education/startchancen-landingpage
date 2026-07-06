@@ -275,14 +275,14 @@ export default function Startseite() {
                     {description}
                   </CardDescription>
                 </CardHeader>
-                <CardFooter className="border-t-0 bg-transparent pt-0 mt-auto">
+                {/* <CardFooter className="border-t-0 bg-transparent pt-0 mt-auto">
                   <Link
                     href={href}
                     className="text-sm font-medium text-[#62A044] hover:underline inline-flex items-center gap-1"
                   >
                     Mehr erfahren <ChevronRight size={13} />
                   </Link>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             ))}
           </div>
