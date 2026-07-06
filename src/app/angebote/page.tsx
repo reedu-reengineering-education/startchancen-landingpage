@@ -25,7 +25,8 @@ const products = [
     badge: "Ab Grundschule",
     price: "1.999 €",
     regularPrice: "2.382 €",
-    // body: "Das senseBox:basic Klassenset enthält 15 vollständige Bausätze – alles, was Sie für den sofortigen Einsatz im Unterricht benötigen, inklusive robustem Transportkoffer. Umfangreiche Unterrichtsmaterialien und Projektideen stehen in digitaler Form zur Verfügung.",
+    body: "",
+    tags: [] as string[],
     bullets: [
       "15 Bausätze inkl. Transportkoffer",
       "Digitale Unterrichtsmaterialien & Projektideen",
@@ -43,7 +44,8 @@ const products = [
     badge: "Sek I & II",
     price: "4.500 €",
     regularPrice: "5.090 €",
-    // body: "Das senseBox:edu S2 Klassenset mit 15 Bausätzen macht Ihre Schülerinnen und Schüler zu echten Umweltforschenden. Inklusive Transportkoffer, umfangreicher Materialien und Projektideen auf unserer Webseite. Das Set wird ergänzt durch einen Feinstaubsensor sowie einen CO₂-Sensor für noch tiefergehende Messungen und spannende Projekte.",
+    body: "",
+    tags: [] as string[],
     bullets: [
       "15 Bausätze inkl. Transportkoffer",
       "1x Air Quality Explorer-Set (Feinstaub- und CO₂-Sensor)",
@@ -62,8 +64,9 @@ const products = [
     title: "senseBox Fortbildungen",
     badge: "Für alle Altergruppen",
     price: "ab 140 € / Stunde (zzgl. Fahrtkosten)",
-    // regularPrice: "5.090 €",
-    // body: "Das senseBox:edu S2 Klassenset mit 15 Bausätzen macht Ihre Schülerinnen und Schüler zu echten Umweltforschenden. Inklusive Transportkoffer, umfangreicher Materialien und Projektideen auf unserer Webseite. Das Set wird ergänzt durch einen Feinstaubsensor sowie einen CO₂-Sensor für noch tiefergehende Messungen und spannende Projekte.",
+    regularPrice: "",
+    body: "",
+    tags: [] as string[],
     bullets: [
       "Einführnung in die senseBox",
       "Einsatz im Unterricht",
@@ -171,7 +174,7 @@ export default function Angebote() {
                   <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                     {title}
                   </h2>
-                  <p className="text-gray-600 leading-relaxed mb-6">{body}</p>
+                  {body && <p className="text-gray-600 leading-relaxed mb-6">{body}</p>}
 
                   {/* Bullets */}
                   <ul className="space-y-2 mb-6">
