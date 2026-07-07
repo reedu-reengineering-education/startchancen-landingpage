@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,12 +29,23 @@ const products = [
     body: "",
     tags: [] as string[],
     bullets: [
-      "15 Bausätze inkl. Transportkoffer",
+      <>
+        15 Bausätze{" "}
+        <Link
+          href="https://sensebox.de/de/products-basic"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#62A044] underline underline-offset-2 hover:text-[#4e8335]"
+        >
+          senseBox:basic
+        </Link>{" "}
+        inkl. Transportkoffer
+      </>,
       "Digitale Unterrichtsmaterialien & Projektideen",
       "Geeignet ab der Grundschule",
       "kostenlose Programmier-App",
       "Firmware für die weiterführende Schule installierbar",
-    ],
+    ] as React.ReactNode[],
     // tags: ["Einstieg", "MINT", "Programmieren"],
     image: { src: "/img/senseBox-basic.jpg", alt: "senseBox:basic Klassenset" },
     bg: "bg-white",
@@ -47,11 +59,22 @@ const products = [
     body: "",
     tags: [] as string[],
     bullets: [
-      "15 Bausätze inkl. Transportkoffer",
+      <>
+        15 Bausätze{" "}
+        <Link
+          href="https://sensebox.de/de/products-edus2"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#62A044] underline underline-offset-2 hover:text-[#4e8335]"
+        >
+          senseBox:edu S2
+        </Link>{" "}
+        inkl. Transportkoffer
+      </>,
       "1x Air Quality Explorer-Set (Feinstaub- und CO₂-Sensor)",
       "Digitale Unterrichtsmaterialien & Projektideen",
       "Programmierbar mit Blockly, Arduino IDE und Python",
-    ],
+    ] as React.ReactNode[],
     // tags: ["Umweltforschung", "Sensoren", "Programmieren", "Making"],
     image: {
       src: "/img/senseBox-edu-S2.jpg",
@@ -69,7 +92,7 @@ const products = [
     tags: [] as string[],
     bullets: [
       "Einführnung in die senseBox",
-      "Einsatz im Unterricht",
+      "Einsatzmöglichkeiten im Unterricht",
       "Materialien für den Einsatz im Unterricht",
       "Für alle MINT-Fächer (Informatik, Mathe, Physik, Chemie, Biologie & Geographie)",
       "Professionelles Fortbildungs-Team",
@@ -174,13 +197,15 @@ export default function Angebote() {
                   <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                     {title}
                   </h2>
-                  {body && <p className="text-gray-600 leading-relaxed mb-6">{body}</p>}
+                  {body && (
+                    <p className="text-gray-600 leading-relaxed mb-6">{body}</p>
+                  )}
 
                   {/* Bullets */}
                   <ul className="space-y-2 mb-6">
-                    {bullets.map((b) => (
+                    {bullets.map((b, i) => (
                       <li
-                        key={b}
+                        key={i}
                         className="flex items-start gap-2.5 text-gray-700 text-sm"
                       >
                         <Check
