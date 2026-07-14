@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import ContactForm from "@/components/sections/ContactForm";
+import { CONTACT_TOPICS, type ContactTopic } from "@/lib/topics";
 
 export const metadata: Metadata = {
   title: "Kontakt – senseBox Beratung anfragen",
@@ -8,7 +9,24 @@ export const metadata: Metadata = {
     "Nehmen Sie Kontakt auf. Wir beraten Sie gerne zu Ihren Fragen und Ideen rund um senseBox in Ihrer Schule.",
 };
 
-export default function Kontakt() {
+export default function Kontakt({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string }>;
+}) {
+  return <KontaktContent searchParams={searchParams} />;
+}
+
+async function KontaktContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string }>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const topic = CONTACT_TOPICS.find((t) => t === resolvedSearchParams.topic) as
+    | ContactTopic
+    | undefined;
+
   return (
     <>
       <Hero
@@ -27,7 +45,7 @@ export default function Kontakt() {
             Schreiben Sie uns direkt. Wir melden uns schnellstmöglich zurück.
           </p>
         </div>
-        <ContactForm />
+        <ContactForm defaultTopic={topic} />
       </section>
     </>
   );

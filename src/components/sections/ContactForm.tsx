@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,22 +12,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CONTACT_TOPICS, type ContactTopic } from "@/lib/topics";
 
 interface FormState {
   name: string;
   institution: string;
   state: string;
   email: string;
+  topic: string;
   message: string;
 }
 
-const initialState: FormState = {
-  name: "",
-  institution: "",
-  state: "",
-  email: "",
-  message: "",
-};
+interface ContactFormProps {
+  defaultTopic?: ContactTopic;
+}
+
+function makeInitialState(defaultTopic?: ContactTopic): FormState {
+  return {
+    name: "",
+    institution: "",
+    state: "",
+    email: "",
+    topic: defaultTopic ?? "",
+    message: "",
+  };
+}
 
 const bundeslaender = [
   "Baden-Württemberg",
@@ -48,11 +57,18 @@ const bundeslaender = [
   "Thüringen",
 ];
 
-export default function ContactForm() {
-  const [form, setForm] = useState<FormState>(initialState);
+export default function ContactForm({ defaultTopic }: ContactFormProps = {}) {
+  const [form, setForm] = useState<FormState>(() => makeInitialState(defaultTopic));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    setForm((prev) => ({
+      ...prev,
+      topic: defaultTopic ?? prev.topic,
+    }));
+  }, [defaultTopic]);
 
   const canSubmit = useMemo(
     () =>
@@ -61,6 +77,7 @@ export default function ContactForm() {
         form.institution &&
         form.state &&
         form.email &&
+        form.topic &&
         form.message,
       ),
     [form],
@@ -97,7 +114,7 @@ export default function ContactForm() {
       setStatusMessage(
         "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
       );
-      setForm(initialState);
+      setForm(makeInitialState(defaultTopic));
     } catch (error) {
       const message =
         error instanceof Error
@@ -142,6 +159,32 @@ export default function ContactForm() {
             className="mt-2"
             required
           />
+        </div>
+
+        <div className="sm:col-span-2">
+          <Label htmlFor="topic">Thema / Anliegen</Label>
+          <Select
+            value={form.topic}
+            onValueChange={(value) => {
+              if (!value) return;
+              setForm((prev) => ({ ...prev, topic: value }));
+            }}
+          >
+            <SelectTrigger
+              id="topic"
+              className="mt-2 w-full"
+              aria-label="Thema"
+            >
+              <SelectValue placeholder="Bitte auswählen" />
+            </SelectTrigger>
+            <SelectContent>
+              {CONTACT_TOPICS.map((t) => (
+                <SelectItem key={t} value={t}>
+                  {t}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="sm:col-span-1">

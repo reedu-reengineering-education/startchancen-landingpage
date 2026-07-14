@@ -49,7 +49,7 @@ export default function Header() {
           {/* Right side actions */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="/kontakt"
+              href={`/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`}
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "bg-[#62A044] hover:bg-[#4e8335] text-white",
@@ -85,7 +85,7 @@ export default function Header() {
           ))}
           <div className="pt-2">
             <Link
-              href="/kontakt"
+              href={`/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`}
               onClick={() => setMobileOpen(false)}
               className={cn(
                 buttonVariants({ variant: "default" }),

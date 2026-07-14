@@ -20,7 +20,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Accordion,
@@ -91,13 +90,6 @@ const kompetenzen = [
   { icon: Lightbulb, label: "Kreatives Problemlösen" },
 ];
 
-const einsatzSzenarien = [
-  "Umweltdaten messen und auswerten",
-  "Coding und Making im Unterricht",
-  "Projektwochen zu Nachhaltigkeit und Digitalisierung",
-  "Einführung in Datenanalyse und Künstliche Intelligenz",
-];
-
 const faqItems = [
   {
     id: "q1",
@@ -139,7 +131,7 @@ const faqItems = [
     question: "Gibt es Fortbildungen für Lehrkräfte?",
     answer:
       "Ja. Wir bieten verschiedene Workshops und Schulungen für Lehrkräfte und Kollegien an.",
-    link: "https://startchancen-landingpage.vercel.app/kontakt",
+    link: "https://reedu.de/workshops",
   },
   {
     id: "q7",
@@ -166,7 +158,10 @@ export default function Startseite() {
           "Für alle Schularten",
         ]}
         ctaPrimary={{ label: "Angebote entdecken", href: "/angebote" }}
-        ctaSecondary={{ label: "Beratung anfragen", href: "/kontakt" }}
+        ctaSecondary={{
+          label: "Beratung anfragen",
+          href: `/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`,
+        }}
         imageSrc="/img/hero_2.jpeg"
         imageAlt="Schüler:innen arbeiten mit der senseBox"
         fullBleed
@@ -255,7 +250,7 @@ export default function Startseite() {
             Unsere Angebote für Startchancen-Schulen
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {angeboteCards.map(({ icon: Icon, title, description, href }) => (
+            {angeboteCards.map(({ icon: Icon, title, description }) => (
               <Card
                 key={title}
                 className="flex flex-col hover:shadow-md hover:border-[#62A044]/30 transition-all"
@@ -325,7 +320,7 @@ export default function Startseite() {
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-2">
-                <Link
+                {/* <Link
                   href="/angebote"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "sm" }),
@@ -340,7 +335,7 @@ export default function Startseite() {
                   )}
                 >
                   senseBox:edu S2 (Sek I &amp; II)
-                </Link>
+                </Link> */}
                 <Link
                   href="/angebote"
                   className={cn(
@@ -404,19 +399,22 @@ export default function Startseite() {
                 src: "/img/IMG_5285.JPG",
                 alt: "Umweltdaten im Einsatz",
                 caption: "Umweltdaten im Einsatz",
+                id: "#umweltmessung",
               },
               {
                 src: "/img/IMG_5933.JPG",
                 alt: "KI und Coding im Unterricht",
                 caption: "KI und Coding im Unterricht",
+                id: "#making",
               },
               {
                 src: "/img/team.jpg",
                 alt: "Projektwoche Nachhaltigkeit",
                 caption: "Projektwoche Nachhaltigkeit",
+                id: "#nachhaltigkeit",
               },
-            ].map(({ src, alt, caption }) => (
-              <Link key={caption} href="/praxisbeispiele">
+            ].map(({ src, alt, caption, id }) => (
+              <Link key={caption} href={`/praxisbeispiele${id}`}>
                 <div className="overflow-hidden rounded-xl border border-gray-100 bg-white hover:shadow-md transition-shadow">
                   <div className="relative aspect-video">
                     <Image src={src} alt={alt} fill className="object-cover" />
@@ -432,7 +430,7 @@ export default function Startseite() {
           </div>
 
           {/* Scenario pills */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-8">
+          {/* <div className="flex flex-wrap justify-center gap-2.5 mb-8">
             {einsatzSzenarien.map((s) => (
               <span
                 key={s}
@@ -442,7 +440,7 @@ export default function Startseite() {
                 {s}
               </span>
             ))}
-          </div>
+          </div> */}
 
           <div className="text-center">
             <Link
@@ -506,7 +504,7 @@ export default function Startseite() {
             Möglichkeiten der senseBox im Rahmen des Startchancen-Programms.
           </p>
           <Link
-            href="/kontakt"
+            href={`/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`}
             className={cn(
               buttonVariants({ size: "lg" }),
               "bg-[#62A044] hover:bg-[#4e8335] text-white",

@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { CONTACT_TOPICS } from "@/lib/topics";
 
 interface ContactPayload {
   name?: string;
   institution?: string;
   state?: string;
   email?: string;
+  topic?: string;
   message?: string;
 }
 
@@ -21,11 +23,19 @@ export async function POST(request: Request) {
     const institution = body.institution?.trim() ?? "";
     const state = body.state?.trim() ?? "";
     const email = body.email?.trim() ?? "";
+    const topic = body.topic?.trim() ?? "";
     const message = body.message?.trim() ?? "";
 
-    if (!name || !institution || !state || !email || !message) {
+    if (!name || !institution || !state || !email || !topic || !message) {
       return NextResponse.json(
         { error: "Bitte füllen Sie alle Felder aus." },
+        { status: 400 },
+      );
+    }
+
+    if (!CONTACT_TOPICS.includes(topic as (typeof CONTACT_TOPICS)[number])) {
+      return NextResponse.json(
+        { error: "Bitte wählen Sie ein gültiges Thema aus." },
         { status: 400 },
       );
     }
@@ -40,9 +50,14 @@ export async function POST(request: Request) {
     const host = process.env.SMTP_HOST;
     const port = Number(process.env.SMTP_PORT ?? "587");
     const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const to = process.env.CONTACT_TO_EMAIL;
-    const from = process.env.CONTACT_FROM_EMAIL ?? user;
+    const pass = process.env.SMTP_PASS ?? process.env.SMTP_PASSWORD;
+    const to = process.env.CONTACT_TO_EMAIL ?? process.env.EMAIL_TO;
+    const from = process.env.CONTACT_FROM_EMAIL ?? process.env.EMAIL_FROM ?? user;
+    const secureEnv = process.env.SMTP_SECURE;
+    const secure =
+      secureEnv === "true" || secureEnv === "false"
+        ? secureEnv === "true"
+        : port === 465;
 
     if (!host || !user || !pass || !to || !from) {
       return NextResponse.json(
@@ -54,7 +69,7 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       host,
       port,
-      secure: port === 465,
+      secure,
       auth: {
         user,
         pass,
@@ -65,12 +80,13 @@ export async function POST(request: Request) {
       from,
       to,
       replyTo: email,
-      subject: `Neue Kontaktanfrage von ${name}`,
+      subject: `Neue Kontaktanfrage (${topic}) von ${name}`,
       text: [
         `Name: ${name}`,
         `Schule / Institution: ${institution}`,
         `Bundesland: ${state}`,
         `E-Mail: ${email}`,
+        `Thema: ${topic}`,
         "",
         "Nachricht:",
         message,
@@ -80,6 +96,7 @@ export async function POST(request: Request) {
         <p><strong>Schule / Institution:</strong> ${institution}</p>
         <p><strong>Bundesland:</strong> ${state}</p>
         <p><strong>E-Mail:</strong> ${email}</p>
+        <p><strong>Thema:</strong> ${topic}</p>
         <p><strong>Nachricht:</strong></p>
         <p>${message.replace(/\n/g, "<br />")}</p>
       `,

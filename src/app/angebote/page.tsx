@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 const products = [
   {
     title: "senseBox:basic Klassenset",
+    topic: "senseBox:basic Klassenset",
     badge: "Ab Grundschule",
     price: "1.999 €",
     regularPrice: "2.382 €",
@@ -53,6 +54,7 @@ const products = [
   },
   {
     title: "senseBox:edu S2 Klassenset",
+    topic: "senseBox:edu S2 Klassenset",
     badge: "Sek I & II",
     price: "4.500 €",
     regularPrice: "5.090 €",
@@ -85,13 +87,14 @@ const products = [
   },
   {
     title: "senseBox Fortbildungen",
+    topic: "senseBox Fortbildungen",
     badge: "Für alle Altergruppen",
     price: "ab 140 € / Stunde (zzgl. Fahrtkosten)",
     regularPrice: "",
     body: "",
     tags: [] as string[],
     bullets: [
-      "Einführnung in die senseBox",
+      "Einführung in die senseBox",
       "Einsatzmöglichkeiten im Unterricht",
       "Materialien für den Einsatz im Unterricht",
       "Für alle MINT-Fächer (Informatik, Mathe, Physik, Chemie, Biologie & Geographie)",
@@ -121,10 +124,13 @@ export default function Angebote() {
       <Hero
         title="Startchancen Angebote mit der senseBox - 100% förderfähig"
         subtitle="Unterrichtsmaterialien, Fortbildungen, Ausstattung und individuelle Kooperationen – für alle Schularten."
-        imageSrc="/img/iCODE_nature.jpg"
+        imageSrc="/img/IMG_5117.jpg"
         imageAlt="senseBox im Schulunterricht"
         fullBleed
-        ctaPrimary={{ label: "Beratung anfragen", href: "/kontakt" }}
+        ctaPrimary={{
+          label: "Beratung anfragen",
+          href: `/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`,
+        }}
       />
 
       {/* ── ANGEBOTS-TYPEN STRIP ──────────────────────────────────────────── */}
@@ -148,6 +154,7 @@ export default function Angebote() {
       {products.map(
         ({
           title,
+          topic,
           badge,
           price,
           regularPrice,
@@ -164,7 +171,7 @@ export default function Angebote() {
                 {/* Image */}
                 <div
                   className={cn(
-                    "relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md",
+                    "relative aspect-4/3 overflow-hidden rounded-2xl shadow-md",
                     imageRight && "lg:order-2",
                   )}
                 >
@@ -230,7 +237,7 @@ export default function Angebote() {
                       )}
                     </div>
                     <Link
-                      href="/kontakt"
+                      href={`/kontakt?topic=${encodeURIComponent(topic)}`}
                       className={cn(
                         buttonVariants({ size: "lg" }),
                         "bg-[#62A044] hover:bg-[#4e8335] text-white",
@@ -260,7 +267,7 @@ export default function Angebote() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              href="/kontakt"
+              href={`/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`}
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "bg-[#62A044] hover:bg-[#4e8335] text-white",

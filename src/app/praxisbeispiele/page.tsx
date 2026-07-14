@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 const examples = [
   {
     title: "Umweltmessungen auf dem Schulhof",
+    id: "umweltmessung",
     body: "Schülerinnen und Schüler messen Temperatur, Feinstaub oder Luftfeuchtigkeit direkt vor Ort und werten die Daten aus. Die gesammelten Messwerte werden anschließend analysiert, visualisiert und mit anderen Schulen geteilt.",
     tags: ["Umweltbildung", "Datenkompetenz", "BNE"],
     image: {
@@ -26,6 +27,7 @@ const examples = [
   },
   {
     title: "Coding und Making",
+    id: "making",
     body: "Eigene digitale Projekte entwickeln und erste Programmiererfahrungen sammeln. Von einfachen LED-Schaltungen bis zu vernetzten Sensorsystemen – praxisnah, spielerisch und mit echten Ergebnissen.",
     tags: ["Programmieren", "Computational Thinking", "MINT"],
     image: {
@@ -37,6 +39,7 @@ const examples = [
   },
   {
     title: "Nachhaltigkeit und BNE",
+    id: "nachhaltigkeit",
     body: "Projektwochen zu Klima, Umwelt und nachhaltiger Entwicklung gestalten. Zum Beispiel eine Smarte Lego Stadt mit Sensoren – Schüler:innen erleben, wie digitale Technologien und Nachhaltigkeit zusammenwirken.",
     tags: ["BNE", "Klimabildung", "Fächerübergreifend"],
     image: {
@@ -62,10 +65,13 @@ export default function Praxisbeispiele() {
       <Hero
         title="Praxisbeispiele"
         subtitle="Wie Schulen die senseBox erfolgreich im Unterricht einsetzen – von Umweltdaten bis KI und Coding."
-        imageSrc="/img/David_in_action.jpg"
+        imageSrc="/img/iCODE_nature.jpg"
         imageAlt="Schülerinnen und Schüler arbeiten mit der senseBox"
         fullBleed
-        ctaPrimary={{ label: "Kontakt aufnehmen", href: "/kontakt" }}
+        ctaPrimary={{
+          label: "Kontakt aufnehmen",
+          href: `/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`,
+        }}
       />
 
       {/* ── KOMPETENZEN STRIP ─────────────────────────────────────────────── */}
@@ -86,14 +92,18 @@ export default function Praxisbeispiele() {
       </section>
 
       {/* ── EXAMPLES ──────────────────────────────────────────────────────── */}
-      {examples.map(({ title, body, tags, image, bg, imageRight }) => (
-        <section key={title} className={`${bg} border-b border-gray-100`}>
+      {examples.map(({ title, body, tags, image, bg, imageRight, id }) => (
+        <section
+          id={id}
+          key={title}
+          className={`${bg} border-b border-gray-100`}
+        >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               {/* Image */}
               <div
                 className={cn(
-                  "relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md",
+                  "relative aspect-4/3 overflow-hidden rounded-2xl shadow-md",
                   imageRight && "lg:order-2",
                 )}
               >
@@ -143,7 +153,7 @@ export default function Praxisbeispiele() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              href="/kontakt"
+              href={`/kontakt?topic=${encodeURIComponent("Allgemeine Anfrage")}`}
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "bg-[#62A044] hover:bg-[#4e8335] text-white",
