@@ -34,9 +34,43 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "senseBox – Digitale Bildung für Startchancen-Schulen",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://startchancen.sensebox.de",
+  ),
+  title: {
+    default: "senseBox – Digitale Bildung für Startchancen-Schulen",
+    template: "%s | senseBox",
+  },
   description:
     "Mit der senseBox Zukunftskompetenzen praxisnah fördern. Unterrichtsmaterialien, Fortbildungen, Projekte & Klima – für alle Schularten.",
+  keywords: ["Nachhaltigkeit", "BNE", "Making", "Coding", "KI"],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "senseBox",
+    locale: "de_DE",
+    title: "senseBox – Digitale Bildung für Startchancen-Schulen",
+    description:
+      "Mit der senseBox Zukunftskompetenzen praxisnah fördern. Unterrichtsmaterialien, Fortbildungen, Projekte & Klima – für alle Schularten.",
+    images: [
+      {
+        url: "/img/hero_startpage.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Schüler:innen arbeiten mit der senseBox",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "senseBox – Digitale Bildung für Startchancen-Schulen",
+    description:
+      "Mit der senseBox Zukunftskompetenzen praxisnah fördern. Unterrichtsmaterialien, Fortbildungen, Projekte & Klima – für alle Schularten.",
+    images: ["/img/hero_startpage.jpeg"],
+  },
 };
 
 export default function RootLayout({

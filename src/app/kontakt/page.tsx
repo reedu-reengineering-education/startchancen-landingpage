@@ -7,6 +7,36 @@ export const metadata: Metadata = {
   title: "Kontakt – senseBox Beratung anfragen",
   description:
     "Nehmen Sie Kontakt auf. Wir beraten Sie gerne zu Ihren Fragen und Ideen rund um senseBox in Ihrer Schule.",
+  alternates: {
+    canonical: "/kontakt",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Kontakt – senseBox Beratung anfragen",
+    description:
+      "Nehmen Sie Kontakt auf. Wir beraten Sie gerne zu Ihren Fragen und Ideen rund um senseBox in Ihrer Schule.",
+    type: "website",
+    locale: "de_DE",
+    url: "/kontakt",
+    images: [
+      {
+        url: "/img/team_reedu.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Das Team von reedu",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kontakt – senseBox Beratung anfragen",
+    description:
+      "Nehmen Sie Kontakt auf. Wir beraten Sie gerne zu Ihren Fragen und Ideen rund um senseBox in Ihrer Schule.",
+    images: ["/img/team_reedu.jpeg"],
+  },
 };
 
 export default function Kontakt({

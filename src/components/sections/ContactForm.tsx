@@ -58,7 +58,9 @@ const bundeslaender = [
 ];
 
 export default function ContactForm({ defaultTopic }: ContactFormProps = {}) {
-  const [form, setForm] = useState<FormState>(() => makeInitialState(defaultTopic));
+  const [form, setForm] = useState<FormState>(() =>
+    makeInitialState(defaultTopic),
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");

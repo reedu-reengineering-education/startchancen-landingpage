@@ -52,7 +52,8 @@ export async function POST(request: Request) {
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS ?? process.env.SMTP_PASSWORD;
     const to = process.env.CONTACT_TO_EMAIL ?? process.env.EMAIL_TO;
-    const from = process.env.CONTACT_FROM_EMAIL ?? process.env.EMAIL_FROM ?? user;
+    const from =
+      process.env.CONTACT_FROM_EMAIL ?? process.env.EMAIL_FROM ?? user;
     const secureEnv = process.env.SMTP_SECURE;
     const secure =
       secureEnv === "true" || secureEnv === "false"
