@@ -50,6 +50,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
+    url: "https://startchancen.sensebox.de",
     siteName: "senseBox",
     locale: "de_DE",
     title: "senseBox – Digitale Bildung für Startchancen-Schulen",
@@ -61,6 +62,12 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Schüler:innen arbeiten mit der senseBox",
+      },
+      {
+        url: "/logos/sensebox-logo.png",
+        width: 400,
+        height: 100,
+        alt: "senseBox Logo",
       },
     ],
   },

@@ -117,7 +117,7 @@ const faqItems = [
     question: "Welche Angebote gibt es für Startchancen-Schulen?",
     answer:
       "Wir unterstützen Schulen mit Unterrichtsmaterialien, Projektangeboten, Fortbildungen, Ausstattung und individueller Beratung.",
-    link: "https://startchancen-landingpage.vercel.app/angebote",
+    link: "/angebote",
   },
   {
     id: "q5",
@@ -138,7 +138,7 @@ const faqItems = [
     question: "Wie kann ich mitmachen?",
     answer:
       "Wenn Ihre Schule Teil des Startchancen-Programms ist oder Sie sich über Einsatzmöglichkeiten informieren möchten, nehmen Sie gerne Kontakt mit uns auf.",
-    link: "https://startchancen-landingpage.vercel.app/kontakt",
+    link: "/kontakt",
   },
 ];
 
